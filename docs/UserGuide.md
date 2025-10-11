@@ -142,6 +142,18 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Adding an appointment : `ap`
+
+Adds an appointment to a person in the address book
+
+Format: `ap INDEX d/DATETIME`
+
+* Adds an appointment to the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Datetime should be in the format `yyyy-MM-ddTHH:mm` and must be provided.
+
+Examples:
+*  `ap 1 d/2025-01-01T12:00` Adds an appointment to the 1st person on 1 Jan 2025 at 12pm.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -192,6 +204,7 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add Appointment** | `ap INDEX d/DATETIME` <br> e.g., `ap 1 d/2025-01-01:12:00`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`

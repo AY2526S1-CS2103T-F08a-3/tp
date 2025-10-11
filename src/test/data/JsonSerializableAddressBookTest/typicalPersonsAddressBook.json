@@ -11,13 +11,15 @@
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tags" : [ "owesMoney", "friends" ]
+    "tags" : [ "owesMoney", "friends" ],
+    "appointments" : [ "2025-01-01T12:00" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
-    "tags" : [ ]
+    "tags" : [ ],
+    "appointments" : [ "2025-01-01T14:00", "2025-01-02T12:00" ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
