@@ -126,6 +126,23 @@
     -fx-text-fill: #010504;
 }
 
+.role_label {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 16px;
+    -fx-padding: 2 6 2 6;
+    -fx-background-radius: 4;
+    -fx-text-fill: white;
+    -fx-translate-x: 10;
+}
+
+.role-buyer {
+    -fx-background-color: #CE4A50;
+}
+
+.role-seller {
+    -fx-background-color: #377375;
+}
+
 .cell_small_label {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
@@ -152,6 +169,7 @@
     -fx-font-size: 13pt;
     -fx-text-fill: white;
 }
+
 
 .result-display .label {
     -fx-text-fill: black !important;

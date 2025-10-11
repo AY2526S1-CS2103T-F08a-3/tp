@@ -33,6 +33,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private Label role;
+    @FXML
     private Label phone;
     @FXML
     private Label address;
@@ -50,10 +52,18 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
+        String roleCapitalised = person.getRole().value.toUpperCase();
+        role.setText(roleCapitalised);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        if (roleCapitalised.equals("BUYER")) {
+            role.getStyleClass().add("role-buyer");
+        } else if (roleCapitalised.equals("SELLER")) {
+            role.getStyleClass().add("role-seller");
+        }
     }
 }
