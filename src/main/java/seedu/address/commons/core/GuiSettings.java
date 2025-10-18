@@ -18,6 +18,7 @@ public class GuiSettings implements Serializable {
     private final double windowWidth;
     private final double windowHeight;
     private final Point windowCoordinates;
+    private final boolean isDarkTheme;
 
     /**
      * Constructs a {@code GuiSettings} with the default height, width and position.
@@ -26,6 +27,7 @@ public class GuiSettings implements Serializable {
         windowWidth = DEFAULT_WIDTH;
         windowHeight = DEFAULT_HEIGHT;
         windowCoordinates = null; // null represent no coordinates
+        this.isDarkTheme = true;
     }
 
     /**
@@ -34,6 +36,17 @@ public class GuiSettings implements Serializable {
     public GuiSettings(double windowWidth, double windowHeight, int xPosition, int yPosition) {
         this.windowWidth = windowWidth;
         this.windowHeight = windowHeight;
+        this.isDarkTheme = true;
+        windowCoordinates = new Point(xPosition, yPosition);
+    }
+
+    /**
+     * Constructs a {@code GuiSettings} with the specified height, width, position and Theme.
+     */
+    public GuiSettings(double windowWidth, double windowHeight, int xPosition, int yPosition, boolean isDarkTheme) {
+        this.windowWidth = windowWidth;
+        this.windowHeight = windowHeight;
+        this.isDarkTheme = isDarkTheme;
         windowCoordinates = new Point(xPosition, yPosition);
     }
 
@@ -47,6 +60,10 @@ public class GuiSettings implements Serializable {
 
     public Point getWindowCoordinates() {
         return windowCoordinates != null ? new Point(windowCoordinates) : null;
+    }
+
+    public boolean getTheme() {
+        return isDarkTheme;
     }
 
     @Override
