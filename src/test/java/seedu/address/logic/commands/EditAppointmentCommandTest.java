@@ -9,6 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SIXTH_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -173,6 +174,54 @@ public class EditAppointmentCommandTest {
         EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_APPOINTMENT, descriptor);
 
         assertCommandFailure(editAppointmentCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_invalidSellerRole_failure() {
+        EditAppointmentDescriptor descriptor = new EditAppointmentDescriptor();
+        descriptor.setSellerIndex(INDEX_FIRST_PERSON);
+
+        EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_APPOINTMENT, descriptor);
+
+        assertCommandFailure(editAppointmentCommand, model, EditAppointmentCommand.MESSAGE_INVALID_SELLER_ROLE);
+    }
+
+    @Test
+    public void execute_invalidBuyerRole_failure() {
+        EditAppointmentDescriptor descriptor = new EditAppointmentDescriptor();
+        descriptor.setBuyerIndex(INDEX_THIRD_PERSON);
+
+        EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_APPOINTMENT, descriptor);
+
+        assertCommandFailure(editAppointmentCommand, model, EditAppointmentCommand.MESSAGE_INVALID_BUYER_ROLE);
+    }
+
+    @Test
+    public void execute_appointmentWithoutBuyer_success() {
+        Person sellerWithoutBuyer = model.getFilteredPersonList().get(INDEX_SIXTH_PERSON.getZeroBased());
+        Appointment appointmentWithoutBuyer = new Appointment(
+                new AppointmentDatetime(VALID_APPOINTMENT_DATETIME_JAN_1), sellerWithoutBuyer);
+        model.addAppointment(appointmentWithoutBuyer);
+
+        EditAppointmentDescriptor descriptor = new EditAppointmentDescriptor();
+        descriptor.setAppointmentDatetime(new AppointmentDatetime(VALID_APPOINTMENT_DATETIME_DEC_31));
+
+        Index indexOfAppointmentWithoutBuyer = Index.fromZeroBased(model.getAppointmentList().size() - 1);
+        EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(indexOfAppointmentWithoutBuyer,
+                descriptor);
+
+        Appointment editedAppointment = new Appointment(
+                new AppointmentDatetime(VALID_APPOINTMENT_DATETIME_DEC_31), sellerWithoutBuyer);
+
+        String expectedMessage = String.format(EditAppointmentCommand.MESSAGE_EDIT_APPOINTMENT_SUCCESS,
+                Messages.format(editedAppointment));
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Appointment targetAppointment = expectedModel.getAppointmentList()
+                .get(indexOfAppointmentWithoutBuyer.getZeroBased());
+        expectedModel.setAppointment(targetAppointment, editedAppointment);
+
+        assertCommandSuccess(editAppointmentCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
