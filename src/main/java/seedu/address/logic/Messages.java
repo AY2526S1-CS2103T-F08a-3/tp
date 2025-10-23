@@ -53,4 +53,18 @@ public class Messages {
         return builder.toString();
     }
 
+    /**
+     * Formats the {@code appointment} for display to the user.
+     */
+    public static String format(Appointment appointment) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("Datetime: ")
+                .append(appointment.getAppointmentDatetime())
+                .append("; Seller: ")
+                .append(appointment.getSeller().getName())
+                .append("; Buyer: ")
+                .append(appointment.getBuyer().getName());
+        return builder.toString();
+    }
+
 }
