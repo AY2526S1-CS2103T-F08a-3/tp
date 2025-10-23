@@ -29,7 +29,8 @@ public class AppointmentBuilder {
     public AppointmentBuilder(Appointment appointmentToCopy) {
         appointmentDatetime = appointmentToCopy.getAppointmentDatetime();
         seller = appointmentToCopy.getSeller();
-        buyer = appointmentToCopy.getBuyer().orElse(null);
+        buyer = appointmentToCopy.getBuyer().orElse(
+                new PersonBuilder().withName("Default Buyer").withRole("buyer").build());
     }
 
     /**
