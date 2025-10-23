@@ -308,6 +308,32 @@ Examples:
 
 <div style="page-break-after: always;"></div>
 
+### Editing an appointment : `eap`
+
+Edits an existing appointment in the displayed appointment list.
+
+Format: `eap APPOINTMENT_INDEX [d/DATETIME] [s/SELLER_INDEX] [b/BUYER_INDEX]`
+
+* Edits the appointment at the specified `APPOINTMENT_INDEX`.
+* The appointment index refers to the index number shown in the displayed appointment list (shown after using [`lap`](#listing-all-appointments-lap) or `sap`).
+* The seller and buyer indices refer to the index numbers shown in the displayed person list.
+* At least one of the optional fields must be provided.
+* All indices must be positive whole numbers, such as 1, 2, 3, ...
+* Datetime should be in an ISO 8601-compliant format (e.g. `yyyy-MM-ddTHH:mm:ss`).
+* Existing values will be updated to the input values.
+* When editing seller or buyer, the new person must have the appropriate role (seller role for seller, buyer role for buyer).
+* The seller and buyer cannot be the same person.
+
+Examples:
+* `lap` followed by `eap 1 d/2025-01-15T14:00` changes the datetime of the 1st appointment to 15 Jan 2025 at 2pm.
+* `lap` followed by `eap 2 s/3` changes the seller of the 2nd appointment to the 3rd person in the person list.
+* `lap` followed by `eap 1 d/2025-02-01T10:00 b/4` changes both the datetime and buyer of the 1st appointment.
+
+Tips:
+* Use [`lap`](#listing-all-appointments-lap) first to see the appointment indices.
+
+<div style="page-break-after: always;"></div>
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book, including both contacts and appointments.
@@ -408,5 +434,6 @@ Action | Format                                                                 
 **Add Appointment** | `ap SELLER_INDEX d/DATETIME [b/BUYER_INDEX]`                                                       | `ap 1 d/2025-01-01:12:00 b/3` | Adds a appointment between seller(indexed 1) and buyer(indexed 3) at that specific timing
 **List Appointments** | `lap`                                                                                              | - | List all appointments you have made in chronological order
 **Search Appointments** | `sap KEYWORD [MORE_KEYWORDS]`                                                                      | `sap Jake` | Searches all appointments with 'Jake'
+**Edit Appointment** | `eap APPOINTMENT_INDEX [d/DATETIME] [s/SELLER_INDEX] [b/BUYER_INDEX]`                            | `eap 1 d/2025-01-15T14:00` <br> `eap 2 s/3 b/4` | Changes the datetime of appointment 1 to 15 Jan 2025 at 2pm. <br> Changes the seller and buyer of appointment 2 to person indices 3 and 4.
 **Delete Appointment** | `dap INDEX d/DATETIME`                                                                             | `dap 1 d/2025-01-01:12:00` | Deletes appointment with the seller at index 1 at that timing
 **Help** | `help`                                                                                             | - | A popup with the link to the user guide will show up
