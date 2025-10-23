@@ -83,7 +83,7 @@ public class EditAppointmentCommandTest {
         Appointment editedAppointment = new Appointment(
                 new AppointmentDatetime(VALID_APPOINTMENT_DATETIME_DEC_31),
                 appointmentToEdit.getSeller(),
-                appointmentToEdit.getBuyer());
+                appointmentToEdit.getBuyer().get());
 
         String expectedMessage = String.format(EditAppointmentCommand.MESSAGE_EDIT_APPOINTMENT_SUCCESS,
                 Messages.format(editedAppointment));
@@ -107,7 +107,7 @@ public class EditAppointmentCommandTest {
         Appointment editedAppointment = new Appointment(
                 appointmentToEdit.getAppointmentDatetime(),
                 newSeller,
-                appointmentToEdit.getBuyer());
+                appointmentToEdit.getBuyer().get());
 
         String expectedMessage = String.format(EditAppointmentCommand.MESSAGE_EDIT_APPOINTMENT_SUCCESS,
                 Messages.format(editedAppointment));

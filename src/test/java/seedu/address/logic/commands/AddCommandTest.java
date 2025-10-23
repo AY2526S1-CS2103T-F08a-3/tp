@@ -184,6 +184,11 @@ public class AddCommandTest {
         public void deleteAppointment(Appointment target) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void setAppointment(Appointment target, Appointment editedAppointment) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
