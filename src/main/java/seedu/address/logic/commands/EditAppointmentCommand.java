@@ -126,14 +126,18 @@ public class EditAppointmentCommand extends Command {
                 throw new CommandException(MESSAGE_INVALID_BUYER_ROLE);
             }
         } else {
-            updatedBuyer = appointmentToEdit.getBuyer();
+            updatedBuyer = appointmentToEdit.getBuyer().orElse(null);
         }
 
-        if (updatedSeller.equals(updatedBuyer)) {
+        if (updatedBuyer != null && updatedSeller.equals(updatedBuyer)) {
             throw new CommandException(MESSAGE_SAME_PERSON);
         }
 
-        return new Appointment(updatedDatetime, updatedSeller, updatedBuyer);
+        if (updatedBuyer != null) {
+            return new Appointment(updatedDatetime, updatedSeller, updatedBuyer);
+        } else {
+            return new Appointment(updatedDatetime, updatedSeller);
+        }
     }
 
     @Override

@@ -61,9 +61,13 @@ public class Messages {
         builder.append("Datetime: ")
                 .append(appointment.getAppointmentDatetime())
                 .append("; Seller: ")
-                .append(appointment.getSeller().getName())
-                .append("; Buyer: ")
-                .append(appointment.getBuyer().getName());
+                .append(appointment.getSeller().getName());
+
+        if (appointment.getBuyer().isPresent()) {
+            builder.append("; Buyer: ")
+                    .append(appointment.getBuyer().get().getName());
+        }
+
         return builder.toString();
     }
 
