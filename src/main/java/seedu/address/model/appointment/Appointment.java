@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Objects;
 import java.util.Optional;
 
+import seedu.address.commons.util.StringUtil;
 import seedu.address.model.person.Person;
 
 /**
@@ -58,6 +59,16 @@ public class Appointment implements Comparable<Appointment> {
 
     public Optional<Person> getBuyer() {
         return Optional.ofNullable(buyer);
+    }
+
+    /**
+     * Returns true if any field of this appointment contains the given keyword (case-insensitive).
+     * Searches across seller details, buyer details, and appointment datetime.
+     */
+    public boolean containsKeyword(String keyword) {
+        return seller.containsKeyword(keyword)
+                || buyer.containsKeyword(keyword)
+                || StringUtil.containsWordIgnoreCase(appointmentDatetime.toString(), keyword);
     }
 
     @Override

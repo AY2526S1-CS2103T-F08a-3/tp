@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.address.Address;
 import seedu.address.model.person.address.AddressType;
@@ -71,6 +72,20 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns true if any field of this person contains the given keyword (case-insensitive).
+     * Searches across name, role, address, property type, email, phone, and tags.
+     */
+    public boolean containsKeyword(String keyword) {
+        return StringUtil.containsWordIgnoreCase(name.fullName, keyword)
+                || StringUtil.containsWordIgnoreCase(role.value, keyword)
+                || StringUtil.containsWordIgnoreCase(address.value, keyword)
+                || StringUtil.containsWordIgnoreCase(address.getAddressType().toString(), keyword)
+                || StringUtil.containsWordIgnoreCase(email.value, keyword)
+                || StringUtil.containsWordIgnoreCase(phone.value, keyword)
+                || tags.stream().anyMatch(tag -> StringUtil.containsWordIgnoreCase(tag.tagName, keyword));
     }
 
     /**

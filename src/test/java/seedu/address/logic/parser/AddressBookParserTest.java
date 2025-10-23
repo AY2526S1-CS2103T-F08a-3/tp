@@ -30,9 +30,11 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListAppointmentsCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SearchAppointmentCommand;
 import seedu.address.logic.commands.ToggleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 // import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
 import seedu.address.model.appointment.AppointmentDatetime;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonContainsKeywordsPredicate;
@@ -141,6 +143,11 @@ public class AddressBookParserTest {
         descriptor.setBuyerIndex(INDEX_SECOND_PERSON);
 
         assertEquals(new EditAppointmentCommand(INDEX_FIRST_PERSON, descriptor), command);
+    public void parseCommand_sap() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        SearchAppointmentCommand command = (SearchAppointmentCommand) parser.parseCommand(
+                SearchAppointmentCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new SearchAppointmentCommand(new AppointmentContainsKeywordsPredicate(keywords)), command);
     }
 
     /*

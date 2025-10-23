@@ -104,4 +104,46 @@ public class PersonTest {
                 + ", tags=" + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());
     }
+
+    @Test
+    public void containsKeyword() {
+        // Use existing person from TypicalPersons
+        Person person = ALICE;
+
+        // Name matching
+        assertTrue(person.containsKeyword("Alice"));
+        assertTrue(person.containsKeyword("Pauline"));
+
+        // Role matching
+        assertTrue(person.containsKeyword("buyer"));
+
+        // Phone matching
+        assertTrue(person.containsKeyword("94351253"));
+
+        // Email matching
+        assertTrue(person.containsKeyword("alice@example.com"));
+
+        // Address matching
+        assertTrue(person.containsKeyword("Jurong"));
+        assertTrue(person.containsKeyword("West"));
+
+        // Property type matching
+        assertTrue(person.containsKeyword("HDB_2"));
+
+        // Tag matching
+        assertTrue(person.containsKeyword("friends"));
+
+        // Case insensitive matching
+        assertTrue(person.containsKeyword("ALICE"));
+        assertTrue(person.containsKeyword("jurong"));
+
+        // Non-matching keywords
+        assertFalse(person.containsKeyword("Charlie"));
+        assertFalse(person.containsKeyword("seller"));
+        assertFalse(person.containsKeyword("nonexistent"));
+
+        // Partial word matching should not work (StringUtil word boundary requirement)
+        assertFalse(person.containsKeyword("Ali")); // partial match of "Alice"
+        assertFalse(person.containsKeyword("9435")); // partial match of "94351253"
+    }
 }

@@ -3,7 +3,6 @@ package seedu.address.model.person;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
 
 /**
@@ -27,14 +26,7 @@ public class PersonContainsKeywordsPredicate implements Predicate<Person> {
      * Checks if the keyword matches any field of the person.
      */
     private boolean matchesAnyField(Person person, String keyword) {
-        return StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword)
-                || StringUtil.containsWordIgnoreCase(person.getRole().value, keyword)
-                || StringUtil.containsWordIgnoreCase(person.getAddress().value, keyword)
-                || StringUtil.containsWordIgnoreCase(person.getEmail().value, keyword)
-                || StringUtil.containsWordIgnoreCase(person.getPhone().value, keyword)
-                || StringUtil.containsWordIgnoreCase(person.getAddressType().toString(), keyword)
-                || person.getTags().stream()
-                        .anyMatch(tag -> StringUtil.containsWordIgnoreCase(tag.tagName, keyword));
+        return person.containsKeyword(keyword);
     }
 
     @Override

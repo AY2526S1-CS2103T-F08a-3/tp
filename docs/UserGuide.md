@@ -233,14 +233,15 @@ Format: `find KEYWORD [MORE_KEYWORDS]...`
 
 Examples:
 * `find Alex` returns all persons named 'Alex' (and anyone with 'Alex' in other details)
-  ![result for 'find Alex'](images/findAlexResult.png)
+![result for 'find Alex'](images/findAlexResult.png)
 * `find Alex John` returns all persons named 'Alex' **or** 'John' (and anyone with 'Alex' or 'John' in other details)
-    ![result for 'find Alex'](images/findAlexResult.png)
+![result for 'find Alex'](images/findAlexResult.png)
 * `find buyer` returns all buyers (and anyone with 'buyer' in other details)
-  ![result for 'find buyer'](images/findBuyerResult.png)
+![result for 'find buyer'](images/findBuyerResult.png)
 
-Tips:
-* After using the `find` command, you can use the new index numbers shown on screen for commands that require index as an input, such as [`edit`](#editing-a-person--edit) or [`ap`](#adding-an-appointment--ap).
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+After using the `find` command, you can use the new index numbers shown on screen for commands that require index as an input, such as [`edit`](#editing-a-person--edit) or [`ap`](#adding-an-appointment--ap).
+</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -256,8 +257,8 @@ Format: `delete INDEX`
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book. 
- ![result for 'list'](images/listResult.png)
- ![result for 'delete 2'](images/delete2Result.png)
+![result for 'list'](images/listResult.png)
+![result for 'delete 2'](images/delete2Result.png)
 * `find irfan` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 ![result for `find irfan`](images/findIrfanResult.png)
 ![result for `delete 1`](images/delete1AfterFindIrfanResult.png)
@@ -265,8 +266,9 @@ Examples:
 Warnings:
 * The `INDEX` is the index number shown in the current or most recently displayed person list. This may be different from the index number in the full person list. If you wish to use the index from the full person list, don't forget to use `list` before using `delete`.
 
-Tips:
-* Use the [`find`](#locating-persons-by-name-find) command to easily locate the contact that you wish to delete.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Use the [`find`](#locating-persons-by-name-find) command to easily locate the contact that you wish to delete.
+</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -286,9 +288,10 @@ Examples:
 *  `ap 4 d/2025-12-01T12:00 b/1` adds an appointment with seller (index 4: David) and buyer (index 1: Alex) on 1 Dec 2025 at 12pm. `lap` can be used to view appointments after adding.
 ![result for `ap 1 d/2025-12-01T12:00 b/4`](images/apResult.png)
 ![result for `lap`](images/lapAfterApResult.png)
-* 
-Tips:
-* Use the [`find`](#locating-persons-by-name-find) command with multiple keywords (such as `find Alex David`) to easily index the contacts you wish to create an appointment for.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Use the [`find`](#locating-persons-by-name-find) command with multiple keywords (such as `find Alex David`) to easily index the contacts you wish to create an appointment for.
+</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -358,16 +361,19 @@ Format: `toggle`
 Examples:
 * `toggle` switches from light to dark mode (or vice versa)
 
-  ![result for 'toggle' in light mode](images/ToggleResultLight.png)
-  ![result for 'toggle' in dark mode](images/ToggleResultDark.png)
+![result for 'toggle' in light mode](images/ToggleResultLight.png)
+<br>
+![result for 'toggle' in dark mode](images/ToggleResultDark.png)
 
-Tips:
+<div markdown="block" class="alert alert-primary">:bulb: **Tip:**
 * Switch to **dark mode** when working in low-light environments to reduce eye strain
 * Use **light mode** during presentations or when sharing your screen for better visibility
 * The theme switches **immediately** without requiring a restart
+</div>
 
-Warnings:
-* The theme change applies **immediately** and affects the **entire application interface**
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+The theme change applies **immediately** and affects the **entire application interface**
+</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -395,7 +401,9 @@ ClientSquare data are saved in the hard disk automatically after any command tha
 ClientSquare data are saved automatically as a JSON file `[JAR file location]/data/ClientSquare.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, ClientSquare will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+If your changes to the data file makes its format invalid, ClientSquare will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.
+<br>
+
 Furthermore, certain edits can cause the ClientSquare to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
