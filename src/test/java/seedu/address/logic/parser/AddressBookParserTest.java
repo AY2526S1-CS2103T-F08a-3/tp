@@ -143,6 +143,9 @@ public class AddressBookParserTest {
         descriptor.setBuyerIndex(INDEX_SECOND_PERSON);
 
         assertEquals(new EditAppointmentCommand(INDEX_FIRST_PERSON, descriptor), command);
+    }
+
+    @Test
     public void parseCommand_sap() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         SearchAppointmentCommand command = (SearchAppointmentCommand) parser.parseCommand(

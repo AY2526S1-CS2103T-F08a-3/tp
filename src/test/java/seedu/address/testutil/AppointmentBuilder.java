@@ -29,7 +29,7 @@ public class AppointmentBuilder {
     public AppointmentBuilder(Appointment appointmentToCopy) {
         appointmentDatetime = appointmentToCopy.getAppointmentDatetime();
         seller = appointmentToCopy.getSeller();
-        buyer = appointmentToCopy.getBuyer();
+        buyer = appointmentToCopy.getBuyer().orElse(null);
     }
 
     /**
