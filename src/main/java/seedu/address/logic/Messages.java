@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 
 /**
@@ -15,6 +16,8 @@ public class Messages {
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
+    public static final String MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX =
+            "The appointment index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d person(s) listed!";
     public static final String MESSAGE_APPOINTMENTS_LISTED_OVERVIEW = "%1$d appointment(s) listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
@@ -48,6 +51,24 @@ public class Messages {
                 .append(person.getAddress())
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
+        return builder.toString();
+    }
+
+    /**
+     * Formats the {@code appointment} for display to the user.
+     */
+    public static String format(Appointment appointment) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("Datetime: ")
+                .append(appointment.getAppointmentDatetime())
+                .append("; Seller: ")
+                .append(appointment.getSeller().getName());
+
+        if (appointment.getBuyer().isPresent()) {
+            builder.append("; Buyer: ")
+                    .append(appointment.getBuyer().get().getName());
+        }
+
         return builder.toString();
     }
 
