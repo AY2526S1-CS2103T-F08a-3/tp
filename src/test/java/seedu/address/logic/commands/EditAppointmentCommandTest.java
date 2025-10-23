@@ -285,4 +285,86 @@ public class EditAppointmentCommandTest {
                 + ", editAppointmentDescriptor=" + descriptor + "}";
         assertEquals(expected, editAppointmentCommand.toString());
     }
+
+    @Test
+    public void editAppointmentDescriptor_equals() {
+        EditAppointmentDescriptor descriptor1 = new EditAppointmentDescriptor();
+        descriptor1.setAppointmentDatetime(new AppointmentDatetime(VALID_APPOINTMENT_DATETIME_JAN_1));
+        descriptor1.setSellerIndex(INDEX_FIRST_PERSON);
+        descriptor1.setBuyerIndex(INDEX_SECOND_PERSON);
+
+        EditAppointmentDescriptor descriptor2 = new EditAppointmentDescriptor();
+        descriptor2.setAppointmentDatetime(new AppointmentDatetime(VALID_APPOINTMENT_DATETIME_JAN_1));
+        descriptor2.setSellerIndex(INDEX_FIRST_PERSON);
+        descriptor2.setBuyerIndex(INDEX_SECOND_PERSON);
+
+        // same object -> returns true
+        assertTrue(descriptor1.equals(descriptor1));
+
+        // same values -> returns true
+        assertTrue(descriptor1.equals(descriptor2));
+
+        // different types -> returns false
+        assertFalse(descriptor1.equals(1));
+
+        // null -> returns false
+        assertFalse(descriptor1.equals(null));
+
+        // different datetime -> returns false
+        EditAppointmentDescriptor descriptor3 = new EditAppointmentDescriptor();
+        descriptor3.setAppointmentDatetime(new AppointmentDatetime(VALID_APPOINTMENT_DATETIME_DEC_31));
+        descriptor3.setSellerIndex(INDEX_FIRST_PERSON);
+        descriptor3.setBuyerIndex(INDEX_SECOND_PERSON);
+        assertFalse(descriptor1.equals(descriptor3));
+
+        // different seller index -> returns false
+        EditAppointmentDescriptor descriptor4 = new EditAppointmentDescriptor();
+        descriptor4.setAppointmentDatetime(new AppointmentDatetime(VALID_APPOINTMENT_DATETIME_JAN_1));
+        descriptor4.setSellerIndex(INDEX_THIRD_PERSON);
+        descriptor4.setBuyerIndex(INDEX_SECOND_PERSON);
+        assertFalse(descriptor1.equals(descriptor4));
+
+        // different buyer index -> returns false
+        EditAppointmentDescriptor descriptor5 = new EditAppointmentDescriptor();
+        descriptor5.setAppointmentDatetime(new AppointmentDatetime(VALID_APPOINTMENT_DATETIME_JAN_1));
+        descriptor5.setSellerIndex(INDEX_FIRST_PERSON);
+        descriptor5.setBuyerIndex(INDEX_THIRD_PERSON);
+        assertFalse(descriptor1.equals(descriptor5));
+    }
+
+    @Test
+    public void editAppointmentDescriptor_toStringMethod() {
+        EditAppointmentDescriptor descriptor = new EditAppointmentDescriptor();
+        descriptor.setAppointmentDatetime(new AppointmentDatetime(VALID_APPOINTMENT_DATETIME_JAN_1));
+        descriptor.setSellerIndex(INDEX_FIRST_PERSON);
+        descriptor.setBuyerIndex(INDEX_SECOND_PERSON);
+
+        String expected = EditAppointmentDescriptor.class.getCanonicalName()
+                + "{appointmentDatetime=" + descriptor.getAppointmentDatetime().get()
+                + ", sellerIndex=" + INDEX_FIRST_PERSON
+                + ", buyerIndex=" + INDEX_SECOND_PERSON + "}";
+        assertEquals(expected, descriptor.toString());
+    }
+
+    @Test
+    public void editAppointmentDescriptor_isAnyFieldEdited() {
+        EditAppointmentDescriptor descriptor = new EditAppointmentDescriptor();
+
+        // no fields set -> returns false
+        assertFalse(descriptor.isAnyFieldEdited());
+
+        // datetime set -> returns true
+        descriptor.setAppointmentDatetime(new AppointmentDatetime(VALID_APPOINTMENT_DATETIME_JAN_1));
+        assertTrue(descriptor.isAnyFieldEdited());
+
+        // reset and test seller index
+        descriptor = new EditAppointmentDescriptor();
+        descriptor.setSellerIndex(INDEX_FIRST_PERSON);
+        assertTrue(descriptor.isAnyFieldEdited());
+
+        // reset and test buyer index
+        descriptor = new EditAppointmentDescriptor();
+        descriptor.setBuyerIndex(INDEX_SECOND_PERSON);
+        assertTrue(descriptor.isAnyFieldEdited());
+    }
 }
