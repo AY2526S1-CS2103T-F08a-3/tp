@@ -48,9 +48,8 @@ Set up ClientSquare and start managing your clients within minutes!
    Open your command terminal and go to the folder where you saved the file using the `cd` command.  
    Then, **start ClientSquare** by typing: `java -jar clientsquare.jar`. Alternatively, you may double-click the jar file to launch the application. <br>
    Within a few seconds, the app window will appear with some sample client data for you to explore. <br>
-<div style="text-align:center;">
-  <img src="images/QuickStartUI.png" alt="UI" width="95%">
-</div>
+    ![Ui](images/QuickStartUI.png)
+<br>
 
 5. **Try a few basic commands**  
    Type a command in the command box and press **Enter** to see it in action.  
@@ -99,10 +98,11 @@ Set up ClientSquare and start managing your clients within minutes!
 
 Shows a message explaining how to access the help page.
 
-<div style="text-align:center;">
-  <img src="images/helpMessage.png" alt="help message" width="95%">
-</div>
 Format: `help`
+<div style="text-align:center;">
+  <img src="images/helpMessage.png" alt="help message" width="90%">
+</div>
+
 
 <div style="page-break-after: always;"></div>
 
@@ -143,7 +143,7 @@ Examples:
 * `add n/Betsy Crowe p/87654321 e/betsycrowe@example.com r/seller a/Clementi Ave 1, Block 442 #19-203 pt/HDB_5`
 
 <div style="text-align:center;">
-  <img src="images/addJohnDoeBetsyCroweResult.png" alt="result for 'add n/Betsy Crowe p/87654321 e/betsycrowe@example.com r/seller a/Clementi Ave 1, Block 442 #19-203 pt/HDB_5'" width="95%">
+  <img src="images/addJohnDoeBetsyCroweResult.png" alt="result for 'add n/Betsy Crowe p/87654321 e/betsycrowe@example.com r/seller a/Clementi Ave 1, Block 442 #19-203 pt/HDB_5'" width="90%">
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -159,6 +159,7 @@ Example:
 <div style="text-align:center;">
   <img src="images/listAllClients.png" alt="result for 'list'" width="95%">
 </div>
+
 <div style="page-break-after: always;"></div>
 
 ### Listing all appointments : `lap`
@@ -176,7 +177,7 @@ Format: `lap`
 Example:
 * `lap` displays all appointments sorted by date and time
 <div style="text-align:center;">
-  <img src="images/lapResult.png" alt="result for 'lap'" width="95%">
+  <img src="images/lapResult.png" alt="result for 'lap'" width="90%">
 </div>
 <div style="page-break-after: always;"></div>
 
@@ -237,19 +238,19 @@ Format: `find KEYWORD [MORE_KEYWORDS]...`
 Examples:
 * `find Alex` returns all persons named 'Alex' (and anyone with 'Alex' in other details)
 <div style="text-align:center;">
-  <img src="images/findAlexResult.png" alt="result for 'find Alex'" width="95%">
+  <img src="images/findAlexResult.png" alt="result for 'find Alex'" width="90%">
 </div>
-
+<br>
 * `find Alex David` returns all persons named 'Alex' **or** 'David' (and anyone with 'Alex' or 'David' in other details)
 <div style="text-align:center;">
-  <img src="images/findAlexDavidResult.png" alt="result for 'find Alex David'" width="95%">
+  <img src="images/findAlexDavidResult.png" alt="result for 'find Alex David'" width="90%">
 </div>
-
+<br>
 * `find buyer` returns all buyers (and anyone with 'buyer' in other details)
 <div style="text-align:center;">
-  <img src="images/findBuyerResult.png" alt="result for 'find buyer'" width="95%">
+  <img src="images/findBuyerResult.png" alt="result for 'find buyer'" width="90%">
 </div>
-
+<br>
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 After using the `find` command, you can use the new index numbers shown on screen for commands that require index as an input, such as [`edit`](#editing-a-person--edit) or [`ap`](#adding-an-appointment--ap).
 </div>
@@ -272,15 +273,17 @@ Examples:
   <img src="images/listResult.png" alt="result for 'list'" width="49%">
   <img src="images/delete2Result.png" alt="result for 'delete 2'" width="49%">
 </div>
+<br>
 
 * `find irfan` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 <div style="display: flex; justify-content: center; gap: 5px;">
   <img src="images/findIrfanResult.png" alt="result for `find irfan`" width="49%">
   <img src="images/delete1AfterFindIrfanResult.png" alt="result for `delete 1`" width="49%">
 </div>
-
-Warnings:
-* The `INDEX` is the index number shown in the current or most recently displayed person list. This may be different from the index number in the full person list. If you wish to use the index from the full person list, don't forget to use `list` before using `delete`.
+<br>
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+The `INDEX` is the index number shown in the current or most recently displayed person list. This may be different from the index number in the full person list. If you wish to use the index from the full person list, don't forget to use `list` before using `delete`.
+</div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Use the [`find`](#locating-persons-by-name-find) command to easily locate the contact that you wish to delete.
